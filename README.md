@@ -7,14 +7,13 @@
 
 ## Identity and scope
 
-- GitHub repository: [`tawounfouet/pynetworkit`](https://github.com/tawounfouet/pynetworkit)
+- GitHub repository: [`tawounfouet/pynetworkkit`](https://github.com/tawounfouet/pynetworkkit)
 - Python distribution and import name: `pynetworkkit`
 - Planned alpha version: `0.1.0a1`
 - Python policy: `>=3.11`, pending CI evidence across supported environments
 
-**Naming decision pending:** the GitHub repository is spelled `pynetworkit` while the
-planned package name is `pynetworkkit`. Do not treat the two spellings as interchangeable.
-See [ADR-0001](docs/adr/0001-python-packaging-and-naming.md).
+**Naming resolved:** the GitHub repository, Python distribution and import are now
+consistently named `pynetworkkit`. See [ADR-0001](docs/adr/0001-python-packaging-and-naming.md).
 
 ## Local bootstrap
 

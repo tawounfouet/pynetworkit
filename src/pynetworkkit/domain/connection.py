@@ -1,11 +1,11 @@
 """Pure logical connection state machine, not kernel TCP state."""
 
-from enum import Enum
+from enum import StrEnum
 
 from pynetworkkit.domain.errors import InvalidConnectionTransition
 
 
-class ConnectionState(str, Enum):
+class ConnectionState(StrEnum):
     """States for one logical communication connection."""
 
     CREATED = "created"
@@ -21,9 +21,7 @@ _ALLOWED: dict[ConnectionState, frozenset[ConnectionState]] = {
     ConnectionState.CONNECTING: frozenset(
         {ConnectionState.ESTABLISHED, ConnectionState.CLOSING, ConnectionState.FAILED}
     ),
-    ConnectionState.ESTABLISHED: frozenset(
-        {ConnectionState.CLOSING, ConnectionState.FAILED}
-    ),
+    ConnectionState.ESTABLISHED: frozenset({ConnectionState.CLOSING, ConnectionState.FAILED}),
     ConnectionState.CLOSING: frozenset({ConnectionState.CLOSED, ConnectionState.FAILED}),
     ConnectionState.CLOSED: frozenset(),
     ConnectionState.FAILED: frozenset(),

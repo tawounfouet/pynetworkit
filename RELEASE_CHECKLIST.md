@@ -1,6 +1,6 @@
 # M0 alpha release gate (not yet executed)
 
-- [ ] Repository and Python package spelling agreed
+- [x] Repository and Python package spelling agreed (`pynetworkkit` verified on GitHub)
 - [ ] Explicit license selected, committed and accurately represented in metadata
 - [ ] All required M0 issues merged and linked to evidence
 - [ ] All domain and stream contract tests pass

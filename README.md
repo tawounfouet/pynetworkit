@@ -7,14 +7,13 @@
 
 ## Identity and scope
 
-- GitHub repository: [`tawounfouet/pynetworkit`](https://github.com/tawounfouet/pynetworkit)
+- GitHub repository: [`tawounfouet/pynetworkkit`](https://github.com/tawounfouet/pynetworkkit)
 - Python distribution and import name: `pynetworkkit`
 - Planned alpha version: `0.1.0a1`
 - Python policy: `>=3.11`, pending CI evidence across supported environments
 
-**Naming decision pending:** the GitHub repository is spelled `pynetworkit` while the
-planned package name is `pynetworkkit`. Do not treat the two spellings as interchangeable.
-See [ADR-0001](docs/adr/0001-python-packaging-and-naming.md).
+**Naming resolved:** the GitHub repository, Python distribution and import are now
+consistently named `pynetworkkit`. See [ADR-0001](docs/adr/0001-python-packaging-and-naming.md).
 
 ## Local bootstrap
 
@@ -31,9 +30,19 @@ python -m build
 python -m twine check dist/*
 ```
 
-The package currently exposes only its version. Domain value objects and in-memory
-transports are planned for subsequent M0 epics; no live TCP/UDP socket support is
-claimed before M1.
+The M0/E1 branch exposes pure network value objects and connection-state transitions.
+In-memory transports are planned for M0/E2; real TCP/UDP sockets belong to M1.
+
+## Domain kernel example
+
+```python
+from pynetworkkit.domain import IPEndpoint, Port, parse_ip_address, parse_ip_network
+
+endpoint = IPEndpoint(parse_ip_address("127.0.0.1"), Port(443))
+network = parse_ip_network("127.0.0.0/8")
+assert endpoint.address in network
+```
+
 
 ## Architecture and delivery
 

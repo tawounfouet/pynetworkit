@@ -55,7 +55,8 @@ Read [the contributor guide](CONTRIBUTING.md) and [security policy](SECURITY.md)
 
 ## License and releases
 
-**License selection is pending.** A public repository is not automatically an
-open-source project. No third-party reuse license is granted by this README.
-There is no PyPI release or verified GitHub release yet. A release requires a
-license decision, security and quality review, build checks and explicit approval.
+PyNetworkKit is licensed under the [MIT License](LICENSE), copyright (c) 2026
+Thomas AWOUNFOUET. Preserve the copyright and license notice in substantial
+copies or distributions. MIT provides the software without warranty.
+No PyPI release or verified GitHub release exists yet. Publication still needs
+security and quality review, the complete M0 integration and explicit approval.

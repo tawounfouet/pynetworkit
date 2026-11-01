@@ -1,0 +1,27 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments and distribution artifacts
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# IDE, OS and local evidence
+.idea/
+.vscode/
+.DS_Store
+.env
+.env.*
+!.env.example
+evidence/*.txt
+evidence/*.json

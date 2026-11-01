@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pynetworkkit"
+dynamic = ["version"]
+description = "Composable Python networking primitives and reproducible learning labs"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{name = "PyNetworkKit contributors"}]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "hypothesis>=6",
+    "mypy>=1.13",
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5",
+    "ruff>=0.8",
+    "twine>=6",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "pynetworkkit.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pynetworkkit*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+pynetworkkit = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+asyncio_mode = "strict"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"

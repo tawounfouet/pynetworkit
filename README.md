@@ -1,65 +1,95 @@
 # PyNetworkKit
 
-**Python-first networking primitives and composable transport contracts.**
+**Python-first networking primitives, typed capability contracts, and reproducible learning labs.**
 
-> Status: **pre-alpha (M0 bootstrap)**. This is an educational and engineering toolkit,
-> not a replacement for the operating system's TCP/IP implementation.
+> **Pre-alpha M0 development.** Version `0.1.0a1`
+> is planned; no public release, PyPI publication or stable API is claimed.
 
-## Identity and scope
 
-- GitHub repository: [`tawounfouet/pynetworkkit`](https://github.com/tawounfouet/pynetworkkit)
-- Python distribution and import name: `pynetworkkit`
-- Planned alpha version: `0.1.0a1`
-- Python policy: `>=3.11`, pending CI evidence across supported environments
+## Project identity and scope
 
-**Naming resolved:** the GitHub repository, Python distribution and import are now
-consistently named `pynetworkkit`. See [ADR-0001](docs/adr/0001-python-packaging-and-naming.md).
+- Canonical repository: [tawounfouet/pynetworkkit](https://github.com/tawounfouet/pynetworkkit)
+- Python distribution and import: `pynetworkkit`
+- Development matrix: Python 3.11/3.12/3.13; Linux, macOS and Windows
+- Pure network-domain types, port contracts, deterministic memory streams
+- No real TCP/UDP sockets, DNS resolver, TLS or privileged probes in M0
 
-## Local bootstrap
+## Install from a source checkout
 
 ```bash
+git clone https://github.com/tawounfouet/pynetworkkit.git
+cd pynetworkkit
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\Activate.ps1
+# macOS / Linux: source .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -e '.[dev]'
-python -c 'import pynetworkkit; print(pynetworkkit.__version__)'
-ruff check .
-ruff format --check .
-mypy src/pynetworkkit
-python -m pytest -q --cov=pynetworkkit --cov-branch --cov-fail-under=95
-python scripts/check_repository_hygiene.py
-python -m build
-python -m twine check dist/*
+python -c "import pynetworkkit; print(pynetworkkit.__version__)"
 ```
 
-The M0/E1 branch exposes pure network value objects and connection-state transitions.
-M0/E2 now provides a bounded memory stream pair with tests; the E3 branch
-adds property-based verification, coverage and security hygiene checks.
-Real TCP/UDP sockets belong to M1.
+The source checkout can be installed without a published PyPI release.
+See the [full quickstart](docs/quickstart.md).
 
-## Domain kernel example
+## Three offline learning labs
+
+```bash
+python examples/lab01_ip_port.py
+python examples/lab02_connection_fsm.py
+python examples/lab03_memory_duplex.py
+```
+
+Learn numeric IP literals, CIDR membership, ports, IPv6 endpoint formatting,
+state-machine transitions, asynchronous byte streams, EOF, full close and
+resource ownership. See [learning exercises](docs/labs/README.md).
+
+## Public API illustration
 
 ```python
 from pynetworkkit.domain import IPEndpoint, Port, parse_ip_address, parse_ip_network
 
-endpoint = IPEndpoint(parse_ip_address("127.0.0.1"), Port(443))
+address = parse_ip_address("127.0.0.1")
 network = parse_ip_network("127.0.0.0/8")
-assert endpoint.address in network
+endpoint = IPEndpoint(address, Port(443))
+assert address in network
+assert str(endpoint) == "127.0.0.1:443"
 ```
 
+The [API reference](docs/api/M0_PUBLIC_API.md) documents exceptions and
+limitations. The memory adapter is for deterministic in-process testing, **not**
+a TCP stack. Cancellation can leave a partial accepted byte prefix.
 
-## Architecture and delivery
+## Quality and build
 
-M0 has five epics: E0 Repository & Packaging, E1 Domain Kernel, E2 Ports & Memory,
-E3 Verification & CI, and E4 Documentation & Release. Production TCP/UDP adapters
-belong to M1. The architecture follows domain purity, capability-specific ports,
-replaceable adapters, explicit lifecycle rules and reproducible tests.
+```bash
+ruff check .
+ruff format --check .
+mypy src/pynetworkkit
+python scripts/check_repository_hygiene.py
+python -m pytest -q --cov=pynetworkkit --cov-branch --cov-fail-under=95
+python -m build
+python -m twine check dist/*
+python scripts/verify_distribution.py
+```
 
-Read [the contributor guide](CONTRIBUTING.md) and [security policy](SECURITY.md).
+The verifier installs the local wheel into a clean temporary virtual
+environment without querying package indexes and emits a SHA256 manifest.
+CI also runs the three examples in subprocesses and retains JUnit/coverage
+and hash evidence for 14 days.
 
-## License and releases
+## Architecture, contribution and release
 
-PyNetworkKit is licensed under the [MIT License](LICENSE), copyright (c) 2026
-Thomas AWOUNFOUET. Preserve the copyright and license notice in substantial
-copies or distributions. MIT provides the software without warranty.
-No PyPI release or verified GitHub release exists yet. Publication still needs
-security and quality review, the complete M0 integration and explicit approval.
+The five M0 epics are Repository & Packaging, Domain Kernel, Ports &
+Memory Adapter, Verification & CI, and Documentation & Release.
+Design is informed by DDD, SOLID/DIP/ISP, Ports & Adapters, KISS and YAGNI.
+
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Architecture overview](docs/architecture.md)
+- [ADR decision register](docs/adr/M0_DECISION_REGISTER.md)
+- [Release checklist](RELEASE_CHECKLIST.md)
+- [Candidate GO/NO-GO gate](docs/releases/M0_ALPHA_RELEASE_READINESS.md)
+- [Changelog](CHANGELOG.md)
+
+**License: [MIT](LICENSE)**, copyright (c) 2026 Thomas AWOUNFOUET.
+Preserve the copyright and MIT permission notice in copies and substantial
+portions of the software. Publication of `0.1.0a1` still requires code reviews,
+protected branch checks, ADR approvals and explicit release authorization.

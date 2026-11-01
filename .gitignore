@@ -25,3 +25,6 @@ dist/
 !.env.example
 evidence/*.txt
 evidence/*.json
+
+# Generated candidate evidence (kept as CI artifacts)
+release-evidence/

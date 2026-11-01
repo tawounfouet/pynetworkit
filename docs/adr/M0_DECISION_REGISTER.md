@@ -33,3 +33,10 @@ evidence from an explicit architecture acceptance by the maintainer.
 - Resource ownership: make close and cancellation obligations observable.
 
 This register does not itself accept any ADR or authorize a release.
+
+## M0 implementation closeout distinction
+
+All four ADRs describe decisions implemented and tested in the M0 baseline,
+but their formal **PROPOSED** status remains unchanged until a human
+architecture approval. This is tracked in [PNK-REL-001](https://github.com/tawounfouet/pynetworkkit/issues/29).
+The technical closure of M0 does not, by itself, accept these ADRs.

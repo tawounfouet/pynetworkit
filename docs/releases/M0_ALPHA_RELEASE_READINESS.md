@@ -56,13 +56,13 @@ rebuild to avoid mixing candidates. No release secret is used by CI.
 | Gate | Status at E4 bootstrap | Evidence or blocker |
 | --- | --- | --- |
 | Canonical repository and package name | PASS | `pynetworkkit` on GitHub |
-| E0-E3 code + test qualification | PASS on merged main | CI after each merge, E4 pending |
-| E4 docs execution | PASS on earlier E4 SHA | Revalidate final E4 head and merged main |
-| Isolated wheel import + dist hashes | PASS on earlier E4 SHA | Reverify merged main |
-| License selected and recorded | PASS in E0-E4 branches | MIT, LICENSE and PEP 639 metadata; final merged-main verification pending |
+| E0-E3 code + test qualification | PASS | All PRs merged; CI green |
+| E4 docs execution | PASS | E4 merged; 121 tests, 9/9 CI green on main |
+| Isolated wheel import + dist hashes | PASS | Verified on main CI 41329729503 |
+| License selected and recorded | PASS | MIT, PEP 639 metadata and wheel inclusion tested on main |
 | GitHub `main` protected / required checks | NOT VERIFIED | Repo-admin review required |
 | ADRs 0001-0004 accepted or explicitly decided | PENDING | [ADR decision ledger](../adr/M0_DECISION_REGISTER.md) |
-| All 20 tasks closed with merged evidence | PENDING | Reconcile issue closure and approval evidence |
+| M0 implementation task reconciliation | TRACKED | Deliverables verified; see [technical closure report](M0_TECHNICAL_CLOSURE_2026-11-01.md); release approval separate |
 | Release readiness review | BLOCKED | Maintainer GO/NO-GO required |
 | Tag `v0.1.0a1` | NOT CREATED | No tagging before approval |
 | GitHub Release / PyPI | NOT PUBLISHED | Separate explicit permission required |
@@ -111,3 +111,8 @@ GO / NO-GO:                   NO-GO
 ```
 
 The planned tag and publication remain manual and separate operations.
+
+## M0 implementation closeout
+
+See [M0 Technical Closure and Evidence Ledger](M0_TECHNICAL_CLOSURE_2026-11-01.md).
+Technical implementation GO is independent from release authorization. Open governance gates are maintained in [PNK-REL-001](https://github.com/tawounfouet/pynetworkkit/issues/29).

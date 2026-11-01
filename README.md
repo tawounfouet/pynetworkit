@@ -87,6 +87,7 @@ Design is informed by DDD, SOLID/DIP/ISP, Ports & Adapters, KISS and YAGNI.
 - [ADR decision register](docs/adr/M0_DECISION_REGISTER.md)
 - [Release checklist](RELEASE_CHECKLIST.md)
 - [Candidate GO/NO-GO gate](docs/releases/M0_ALPHA_RELEASE_READINESS.md)
+- [M0 technical closure and evidence](docs/releases/M0_TECHNICAL_CLOSURE_2026-11-01.md)
 - [Changelog](CHANGELOG.md)
 
 **License: [MIT](LICENSE)**, copyright (c) 2026 Thomas AWOUNFOUET.

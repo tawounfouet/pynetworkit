@@ -16,14 +16,14 @@ a proposed tag or published artifact already exists.
 ## Blockers to resolve before tagging or publishing
 
 - [x] MIT license chosen and committed with SPDX PEP 639 metadata.
-- [ ] Confirm license expression and LICENSE inclusion in final merged-main distributions.
-- [ ] Review repository `main` protection and required checks.
+- [x] SPDX MIT metadata and bundled LICENSE verified on merged main CI (run 41329729503).
+- [ ] Repository `main` protections and required checks: admin verification pending (see issue #29).
 - [ ] Accept/reject all ADRs with documented rationale and maintainer approval.
 - [ ] Approve reviewed public API and compatibility caveats.
 - [ ] Review dependency-security posture and publication permission scope.
 - [x] Merge E0 -> E1 -> E2 -> E3 in dependency order.
-- [ ] Integrate E4 and qualify the resulting merged `main` SHA.
-- [ ] Re-run full CI (nine jobs) and fresh wheel install on merged `main`.
+- [x] E4 merged and final M0 main CI qualified (run 41328761421).
+- [x] Re-ran full 9-job CI and isolated wheel verification on audited main SHA `901422a02309f6776ee7ccc33107dc288339bbaa`.
 - [ ] Record exact approved commit SHA, wheel/sdist hashes and evidence links.
 - [ ] Sign the M0 GO/NO-GO review, approve a specific tag separately.
 - [ ] Approve external GitHub Release / PyPI publication separately.
@@ -40,3 +40,9 @@ a proposed tag or published artifact already exists.
    [the candidate gate](docs/releases/M0_ALPHA_RELEASE_READINESS.md).
 
 **No tag, GitHub release or PyPI upload is requested by this checklist.**
+
+## M0 implementation closure
+
+- [x] All five M0 implementation epics merged into `main`.
+- [x] Technical M0 closure report recorded: [evidence ledger](docs/releases/M0_TECHNICAL_CLOSURE_2026-11-01.md).
+- [ ] Independent alpha release GO, tag and external publication authorization. Tracked in [PNK-REL-001](https://github.com/tawounfouet/pynetworkkit/issues/29).

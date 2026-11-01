@@ -6,12 +6,13 @@ Hypothesis examples use deterministic generation and avoid external network I/O.
 from ipaddress import IPv4Address, IPv4Network, IPv6Address, IPv6Network
 
 import pytest
-from hypothesis import given, settings, strategies as st
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from pynetworkkit.domain import (
     ConnectionState,
-    IPEndpoint,
     InvalidConnectionTransition,
+    IPEndpoint,
     Port,
     can_transition,
     parse_ip_address,

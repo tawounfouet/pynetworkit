@@ -50,6 +50,15 @@ def main() -> int:
         }
         if missing := required - members:
             raise SystemExit(f"Wheel is missing required package members: {sorted(missing)}")
+        metadata_files = [name for name in members if name.endswith(".dist-info/METADATA")]
+        license_files = [name for name in members if name.endswith(".dist-info/licenses/LICENSE")]
+        if len(metadata_files) != 1 or len(license_files) != 1:
+            raise SystemExit("Wheel must contain PEP 639 metadata and MIT LICENSE")
+        wheel_metadata = archive.read(metadata_files[0]).decode("utf-8")
+        if "License-Expression: MIT" not in wheel_metadata:
+            raise SystemExit("Wheel metadata does not declare SPDX License-Expression: MIT")
+        if "License-File: LICENSE" not in wheel_metadata:
+            raise SystemExit("Wheel metadata does not declare License-File: LICENSE")
 
     with tempfile.TemporaryDirectory(prefix="pynetworkkit-wheel-") as temporary:
         target = Path(temporary) / "environment"
@@ -73,14 +82,15 @@ def main() -> int:
             str(interpreter),
             "-c",
             (
-                "from importlib.metadata import version;"
+                "from importlib.metadata import metadata, version;"
                 "import pynetworkkit;"
                 "from pynetworkkit.domain import Port, IPEndpoint;"
                 "from pynetworkkit.adapters.memory import create_memory_stream_pair;"
                 "assert pynetworkkit.__version__ == version('pynetworkkit');"
                 "assert str(Port(443)) == '443';"
                 "assert str(IPEndpoint.parse('::1', 443)) == '[::1]:443';"
-                "assert callable(create_memory_stream_pair)"
+                "assert callable(create_memory_stream_pair);"
+                "assert metadata('pynetworkkit')['License-Expression'] == 'MIT'"
             ),
         )
         run_command(str(interpreter), "-m", "pip", "check")

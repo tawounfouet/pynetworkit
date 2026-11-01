@@ -56,7 +56,7 @@ rebuild to avoid mixing candidates. No release secret is used by CI.
 | E0-E3 code + test qualification | PASS on PR heads | See individual CI runs; **not** merged |
 | E4 docs execution | PENDING | E4 CI on exact SHA required |
 | Isolated wheel import + dist hashes | PENDING | E4 CI evidence required |
-| License selected and recorded | BLOCKED | Explicit maintainer decision needed |
+| License selected and recorded | PASS in E0-E4 branches | MIT, LICENSE and PEP 639 metadata; final merged-main verification pending |
 | GitHub `main` protected / required checks | NOT VERIFIED | Repo-admin review required |
 | ADRs 0001-0004 accepted or explicitly decided | PENDING | [ADR decision ledger](../adr/M0_DECISION_REGISTER.md) |
 | All 20 tasks closed with merged evidence | BLOCKED | Stacked PRs open |
@@ -70,7 +70,8 @@ The successful technical CI of stacked PRs is not release approval.
 ## Supply-chain and release precautions
 
 - Record wheel/sdist SHA256 and associated commit SHA in the evidence ledger.
-- Inspect package metadata: no license identifier is currently declared.
+- Verify `License-Expression: MIT`, `License-File: LICENSE`, and a bundled
+  copy of LICENSE in both distributions; final merged-main proof is required.
 - Complete contributor/security policies, secret review, dependency review and
   optional stronger auditing prior to external distribution.
 - Decide whether signed annotated tags and action SHA pinning are required.
@@ -96,7 +97,7 @@ Current main SHA:              PENDING
 Approved candidate SHA:       PENDING
 CI run and platform matrix:   PENDING
 Wheel SHA256 / sdist SHA256:   PENDING
-License decision:             PENDING
+License decision:             MIT selected, final main verification pending
 ADR review evidence:          PENDING
 Repository protection:        PENDING
 Security review:              PENDING

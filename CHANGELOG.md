@@ -13,6 +13,7 @@ All notable changes will be recorded in this file. Versions follow PEP 440.
   combined coverage gate (95%), test evidence artifacts and security hygiene.
 - M0 E4 executable offline quickstart labs, API and ADR review ledger,
   clean isolated wheel verification and SHA256 candidate evidence.
+- MIT licensing with SPDX PEP 639 metadata and bundled license notice.
 
 > `0.1.0a1` is a **planned** release identifier. No tag or publication is
 > claimed by this changelog.

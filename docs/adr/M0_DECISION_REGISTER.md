@@ -5,7 +5,7 @@ evidence from an explicit architecture acceptance by the maintainer.
 
 | ADR | Topic | Evidence available | Decision | Approval |
 | --- | --- | --- | --- | --- |
-| [0001](0001-python-packaging-and-naming.md) | Package baseline and naming | Repository renamed to `pynetworkkit`; E0 CI | Naming implemented; remaining decisions PROPOSED | Pending |
+| [0001](0001-python-packaging-and-naming.md) | Package baseline and naming | Repository renamed to `pynetworkkit`; E0 CI | Naming and MIT license implemented; remaining decisions PROPOSED | Pending |
 | [0002](0002-domain-addressing-and-lifecycle.md) | IP/CIDR types, Port, connection FSM | E1 tests and E3 property tests | PROPOSED; terminal FAILED vs CLOSED semantics need sign-off | Pending |
 | [0003](0003-memory-stream-semantics.md) | Backpressure, cancellation, close | E2 contract and E3 resilience tests | PROPOSED; half-close deferred | Pending |
 | [0004](0004-e3-quality-gates.md) | Coverage/security quality policy | E3 CI 9/9, observed 97%, floor 95% | Floor implemented; ADR remains PROPOSED | Pending |
@@ -19,7 +19,8 @@ evidence from an explicit architecture acceptance by the maintainer.
   documents 17/19 without pretending the source specifications are identical.
 - [x] Document timeout/cancellation, partial writes, full close and EOF.
 - [x] Distinguish memory adapter behavior from a real TCP stack.
-- [ ] Maintainer formally accepts/rejects ADR-0001 through ADR-0004.
+- [x] Maintainer selected MIT; root LICENSE and SPDX metadata implemented.
+- [ ] Maintainer formally accepts/rejects remaining ADR-0001 through ADR-0004 decisions.
 - [ ] Approve the pre-alpha public contract for the `0.1.0a1` tag.
 - [ ] Confirm API review evidence on merged `main` (not only stacked branches).
 

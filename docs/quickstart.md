@@ -88,5 +88,6 @@ See [the M0 API reference](api/M0_PUBLIC_API.md). Key constraints:
   routing, an OS socket, or a network simulator.
 - The API may change before the first stable release.
 
-No license is yet selected; do not infer reuse rights from public
-repository visibility.
+PyNetworkKit uses the [MIT License](../LICENSE), copyright (c) 2026
+Thomas AWOUNFOUET. Copies and substantial portions must preserve the MIT
+copyright and permission notice.

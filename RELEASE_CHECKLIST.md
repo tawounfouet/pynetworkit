@@ -14,7 +14,8 @@ a proposed tag or published artifact already exists.
 
 ## Blockers to resolve before tagging or publishing
 
-- [ ] Choose and commit an appropriate LICENSE with matching package metadata.
+- [x] MIT license chosen and committed with SPDX PEP 639 metadata.
+- [ ] Confirm license expression and LICENSE inclusion in final merged-main distributions.
 - [ ] Review repository `main` protection and required checks.
 - [ ] Accept/reject all ADRs with documented rationale and maintainer approval.
 - [ ] Approve reviewed public API and compatibility caveats.

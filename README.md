@@ -90,7 +90,7 @@ Design is informed by DDD, SOLID/DIP/ISP, Ports & Adapters, KISS and YAGNI.
 - [Candidate GO/NO-GO gate](docs/releases/M0_ALPHA_RELEASE_READINESS.md)
 - [Changelog](CHANGELOG.md)
 
-**No license has been selected.** Public repository visibility does not
-automatically grant reuse rights. Do not tag, announce or publish until the
-license, code reviews, protected branch checks, ADRs and release approval
-are explicitly completed.
+**License: [MIT](LICENSE)**, copyright (c) 2026 Thomas AWOUNFOUET.
+Preserve the copyright and MIT permission notice in copies and substantial
+portions of the software. Publication of `0.1.0a1` still requires code reviews,
+protected branch checks, ADR approvals and explicit release authorization.

@@ -1,7 +1,8 @@
 # M0 alpha release gate (not yet executed)
 
 - [x] Repository and Python package spelling agreed (`pynetworkkit` verified on GitHub)
-- [ ] Explicit license selected, committed and accurately represented in metadata
+- [x] MIT license selected, committed and represented in PEP 639 metadata
+- [ ] Verify MIT metadata and inclusion in the final wheel/sdist on merged main
 - [ ] All required M0 issues merged and linked to evidence
 - [ ] All domain and stream contract tests pass
 - [ ] Lint, formatting, mypy and full test matrix green

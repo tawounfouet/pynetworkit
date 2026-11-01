@@ -3,14 +3,15 @@
 **Release state: NO-GO.** These are release obligations, not assertions that
 a proposed tag or published artifact already exists.
 
-## Verified on stacked feature branches (not merged to main)
+## Evidence from branch and main CI
 
 - [x] Repository, Python distribution and import use `pynetworkkit`.
-- [x] E0, E1, E2 and E3 have passing nine-job GitHub Actions matrix evidence.
+- [x] E0, E1, E2 and E3 have passing nine-job CI evidence and are merged into `main`.
 - [x] Existing domain properties, async contract checks and the 95% coverage
   floor are exercised in E3 CI.
-- [ ] E4 runs its executable documentation and isolated wheel checks on
-  the final head SHA; capture XML and SHA256 evidence.
+- [x] E4 branch passed executable labs, isolated wheel checks and SHA256
+  artifact collection on its previous head SHA.
+- [ ] Qualify the final E4 head and the resulting merged `main` SHA.
 
 ## Blockers to resolve before tagging or publishing
 
@@ -20,7 +21,8 @@ a proposed tag or published artifact already exists.
 - [ ] Accept/reject all ADRs with documented rationale and maintainer approval.
 - [ ] Approve reviewed public API and compatibility caveats.
 - [ ] Review dependency-security posture and publication permission scope.
-- [ ] Merge E0 -> E1 -> E2 -> E3 -> E4 in dependency order.
+- [x] Merge E0 -> E1 -> E2 -> E3 in dependency order.
+- [ ] Integrate E4 and qualify the resulting merged `main` SHA.
 - [ ] Re-run full CI (nine jobs) and fresh wheel install on merged `main`.
 - [ ] Record exact approved commit SHA, wheel/sdist hashes and evidence links.
 - [ ] Sign the M0 GO/NO-GO review, approve a specific tag separately.

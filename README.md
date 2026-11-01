@@ -2,9 +2,9 @@
 
 **Python-first networking primitives, typed capability contracts, and reproducible learning labs.**
 
-> **Pre-alpha M0 development branch.** The version string `0.1.0a1`
+> **Pre-alpha M0 development.** Version `0.1.0a1`
 > is planned; no public release, PyPI publication or stable API is claimed.
-> The M0 E0-E4 pull requests are stacked and not merged into `main`.
+
 
 ## Project identity and scope
 
@@ -14,12 +14,11 @@
 - Pure network-domain types, port contracts, deterministic memory streams
 - No real TCP/UDP sockets, DNS resolver, TLS or privileged probes in M0
 
-## Install from the E4 working branch
+## Install from a source checkout
 
 ```bash
 git clone https://github.com/tawounfouet/pynetworkkit.git
 cd pynetworkkit
-git checkout feat/m0-e4-documentation-release
 python -m venv .venv
 # macOS / Linux: source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
@@ -27,7 +26,7 @@ python -m pip install -e '.[dev]'
 python -c "import pynetworkkit; print(pynetworkkit.__version__)"
 ```
 
-A fresh checkout of `main` does **not** yet include these changes.
+The source checkout can be installed without a published PyPI release.
 See the [full quickstart](docs/quickstart.md).
 
 ## Three offline learning labs

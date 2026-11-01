@@ -3,8 +3,8 @@
 - Product: **PyNetworkKit** - `tawounfouet/pynetworkkit`
 - Version target: `0.1.0a1`, proposed tag `v0.1.0a1`
 - Status: **NO-GO for tagging or publication**, pending release approvals.
-- Stage: pre-release preparation on stacked E4 feature branch.
-- Evidence shall always refer to the exact current E4 SHA and CI run.
+- Stage: code integration and release-gate verification.
+- Evidence must refer to the exact tested `main` SHA before release approval.
 
 ## Meaning of "candidate"
 
@@ -12,15 +12,18 @@ The alpha **code and packaging** are prepared for validation, but there is no
 approved Git tag, GitHub Release or PyPI publication. The term "candidate"
 here is a staged *proposal*, not evidence that an alpha has shipped.
 
-## Required GitHub integration sequence
+## Integration and qualification sequence
 
-1. Review and merge E0 [PR #5](https://github.com/tawounfouet/pynetworkkit/pull/5).
-2. Retarget and review E1 [PR #11](https://github.com/tawounfouet/pynetworkkit/pull/11) to `main`, merge.
-3. Retarget and review E2 [PR #16](https://github.com/tawounfouet/pynetworkkit/pull/16) to `main`, merge.
-4. Retarget and review E3 [PR #21](https://github.com/tawounfouet/pynetworkkit/pull/21) to `main`, merge.
-5. Retarget E4 from E3 to `main` after dependencies merge, review and merge.
-6. Repeat all checks on merged `main`. Do **not** reuse passing PR results as
-   sufficient evidence for a different SHA.
+The M0 E0 [PR #5](https://github.com/tawounfouet/pynetworkkit/pull/5),
+E1 [PR #11](https://github.com/tawounfouet/pynetworkkit/pull/11),
+E2 [PR #16](https://github.com/tawounfouet/pynetworkkit/pull/16)
+and E3 [PR #21](https://github.com/tawounfouet/pynetworkkit/pull/21)
+have merged into `main` in dependency order.
+
+E4 [PR #25](https://github.com/tawounfouet/pynetworkkit/pull/25)
+contains the final documentation and candidate validation. Qualify the
+resulting merged `main` SHA with fresh CI; prior feature-branch results
+do not certify the new SHA.
 
 ## Candidate verification commands
 
@@ -53,13 +56,13 @@ rebuild to avoid mixing candidates. No release secret is used by CI.
 | Gate | Status at E4 bootstrap | Evidence or blocker |
 | --- | --- | --- |
 | Canonical repository and package name | PASS | `pynetworkkit` on GitHub |
-| E0-E3 code + test qualification | PASS on PR heads | See individual CI runs; **not** merged |
-| E4 docs execution | PENDING | E4 CI on exact SHA required |
-| Isolated wheel import + dist hashes | PENDING | E4 CI evidence required |
+| E0-E3 code + test qualification | PASS on merged main | CI after each merge, E4 pending |
+| E4 docs execution | PASS on earlier E4 SHA | Revalidate final E4 head and merged main |
+| Isolated wheel import + dist hashes | PASS on earlier E4 SHA | Reverify merged main |
 | License selected and recorded | PASS in E0-E4 branches | MIT, LICENSE and PEP 639 metadata; final merged-main verification pending |
 | GitHub `main` protected / required checks | NOT VERIFIED | Repo-admin review required |
 | ADRs 0001-0004 accepted or explicitly decided | PENDING | [ADR decision ledger](../adr/M0_DECISION_REGISTER.md) |
-| All 20 tasks closed with merged evidence | BLOCKED | Stacked PRs open |
+| All 20 tasks closed with merged evidence | PENDING | Reconcile issue closure and approval evidence |
 | Release readiness review | BLOCKED | Maintainer GO/NO-GO required |
 | Tag `v0.1.0a1` | NOT CREATED | No tagging before approval |
 | GitHub Release / PyPI | NOT PUBLISHED | Separate explicit permission required |

@@ -24,10 +24,7 @@ python -m venv .venv
 On macOS/Linux: `source .venv/bin/activate`.
 On Windows PowerShell: `.venv\Scripts\Activate.ps1`.
 
-**Important:** until the M0 stacked PRs are merged, checkout the E4 branch:
-
 ```bash
-git checkout feat/m0-e4-documentation-release
 python -m pip install -e '.[dev]'
 python -c "import pynetworkkit; print(pynetworkkit.__version__)"
 ```

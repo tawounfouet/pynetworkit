@@ -1,6 +1,6 @@
 # ADR-0001: Python baseline, packaging and project naming
 
-- Status: **proposed**, naming decision confirmed on 2026-11-01; other decisions remain under review
+- Status: **proposed**, naming and MIT licensing choices confirmed on 2026-11-01; other decisions remain under review
 - Milestone: M0 E0
 - Date: 2026-10-31
 
@@ -20,8 +20,10 @@ and Python import name now all use `pynetworkkit`.
 5. **Naming decision confirmed:** use `pynetworkkit` consistently for the GitHub
    repository, the Python distribution and the import. The historical typo
    `pynetworkit` must not appear in canonical links or new setup commands.
-6. Defer choosing a license. Do not publish to PyPI or assert open-source rights
-   before an explicit license decision and name-availability check.
+6. **License decision confirmed:** MIT with copyright (c) 2026 Thomas AWOUNFOUET.
+   Commit root LICENSE; use PEP 639 SPDX `license = "MIT"` and
+   `license-files = ["LICENSE"]` in pyproject.toml. Require setuptools>=77.0.3
+   to support these fields. Publication and naming availability reviews remain separate.
 7. Prefer smaller domain/ports/adapters modules rather than forcing OSI layers
    into Python package paths.
 
@@ -36,5 +38,6 @@ and Python import name now all use `pynetworkkit`.
 - Confirm `pip install -e '.[dev]'`, imports and clean wheel/sdist installations.
 - CI must verify Python 3.11/3.12/3.13 on intended OS environments.
 - The repository naming decision is resolved and GitHub confirms the new slug.
-- The license choice remains an **open decision**; it is not an accepted fact.
+- The MIT license choice is confirmed by the maintainer; the ADR as a whole
+  remains proposed until other technical decisions are accepted.
 - Record the precise SHA and results before upgrading this ADR to accepted.

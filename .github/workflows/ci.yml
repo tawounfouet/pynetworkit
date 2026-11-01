@@ -40,7 +40,13 @@ jobs:
           python -m pytest -q --cov=pynetworkkit --cov-branch
           --cov-report=term-missing --cov-report=xml:coverage.xml
           --cov-fail-under=95 --junitxml=pytest-results.xml
-      - name: Upload test and coverage evidence
+      - name: Build distribution
+        run: python -m build
+      - name: Verify distribution metadata
+        run: python -m twine check dist/*
+      - name: Verify isolated wheel and create SHA256 manifest
+        run: python scripts/verify_distribution.py
+      - name: Upload tests, coverage and candidate hashes
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -48,9 +54,6 @@ jobs:
           path: |
             pytest-results.xml
             coverage.xml
+            release-evidence/SHA256SUMS.txt
           if-no-files-found: ignore
           retention-days: 14
-      - name: Build distribution
-        run: python -m build
-      - name: Verify distribution metadata
-        run: python -m twine check dist/*

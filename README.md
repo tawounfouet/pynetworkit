@@ -25,13 +25,16 @@ python -c 'import pynetworkkit; print(pynetworkkit.__version__)'
 ruff check .
 ruff format --check .
 mypy src/pynetworkkit
-pytest -q
+python -m pytest -q --cov=pynetworkkit --cov-branch --cov-fail-under=95
+python scripts/check_repository_hygiene.py
 python -m build
 python -m twine check dist/*
 ```
 
 The M0/E1 branch exposes pure network value objects and connection-state transitions.
-In-memory transports are planned for M0/E2; real TCP/UDP sockets belong to M1.
+M0/E2 now provides a bounded memory stream pair with tests; the E3 branch
+adds property-based verification, coverage and security hygiene checks.
+Real TCP/UDP sockets belong to M1.
 
 ## Domain kernel example
 

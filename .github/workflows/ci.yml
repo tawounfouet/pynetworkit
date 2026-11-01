@@ -39,7 +39,7 @@ jobs:
         run: >-
           python -m pytest -q --cov=pynetworkkit --cov-branch
           --cov-report=term-missing --cov-report=xml:coverage.xml
-          --junitxml=pytest-results.xml
+          --cov-fail-under=95 --junitxml=pytest-results.xml
       - name: Upload test and coverage evidence
         if: always()
         uses: actions/upload-artifact@v4

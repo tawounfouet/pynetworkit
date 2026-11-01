@@ -1,6 +1,6 @@
 # ADR-0004 - M0 quality evidence, property testing and CI security
 
-- Status: PROPOSED, pending API/security and coverage baseline review
+- Status: PROPOSED, coverage floor chosen from measured baseline; pending maintainer review
 - Date: 2026-11-01
 - Milestone: M0 / E3
 - Issues: PNK-M0-014 through PNK-M0-017
@@ -20,10 +20,11 @@ repository supply-chain hygiene.
    in-memory stream behavior. Do not claim these tests prove real TCP behavior.
 4. Generate XML coverage and JUnit XML in every CI job, preserve them as short-
    lived artifacts, and report *branch* coverage in CI output.
-5. **Do not set a speculative coverage threshold.** First measure actual
-   coverage; choose a meaningful initial floor after review and document it
-   in a subsequent commit or ADR amendment. Future changes must not silently
-   lower that floor.
+5. **Enforce combined statement/branch coverage >=95%** after an observed
+   baseline of **97%** (173 statements, 56 branches, three missed statements
+   and three missed branches) on Python 3.11/3.13 CI environments. This floor
+   leaves a small margin for platform variation and must not be lowered
+   without review and a documented reason.
 6. Add offline heuristic credential hygiene and `pip check` in CI, plus
    Dependabot review policy. These are complementary, not comprehensive
    supply-chain or secrets audits.
@@ -36,7 +37,8 @@ repository supply-chain hygiene.
 - CI: Ruff lint/format, mypy strict, property-based and async contract tests,
   branch coverage, JUnit reports, wheel/sdist build and twine.
 - Test and coverage XML artifacts retained 14 days per CI run.
-- ADR remains proposed until owner signs off and the threshold is selected.
+- Coverage enforcement is now configured using the measured baseline, not
+  an arbitrary pre-implementation target. ADR still awaits owner approval.
 
 ## Trade-offs and risk
 

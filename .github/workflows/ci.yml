@@ -48,7 +48,7 @@ jobs:
         run: python scripts/verify_distribution.py
       - name: Upload tests, coverage and candidate hashes
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-evidence-${{ runner.os }}-py${{ matrix.python-version }}
           path: |

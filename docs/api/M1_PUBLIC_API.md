@@ -20,7 +20,10 @@ from pynetworkkit.ports import (
     StreamClosedError,
 )
 from pynetworkkit.adapters.socket import (
-    SocketTCPStream, SocketTCPConnector, SocketTCPListener, SocketUDPChannel,
+    SocketTCPStream,
+    SocketTCPConnector,
+    SocketTCPListener,
+    SocketUDPChannel,
 )
 ```
 

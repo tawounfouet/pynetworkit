@@ -3,6 +3,7 @@
 The listener exclusively owns its passive socket. An accepted connected socket
 is transferred to the returned stream; closing the listener does not close it.
 """
+
 from __future__ import annotations
 
 from typing import Protocol

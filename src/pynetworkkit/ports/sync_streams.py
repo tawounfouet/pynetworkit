@@ -16,18 +16,24 @@ from pynetworkkit.domain import IPEndpoint
 class SyncByteStream(Protocol):
     """Owned, blocking TCP byte stream.
 
-    read(max_bytes): requires a positive int; returns at most max_bytes bytes.
+    read(max_bytes, timeout=None): requires positive int; returns at most max_bytes bytes.
     b"" signals peer EOF only. TCP has no application message boundaries.
-    write(data): requires bytes; returns 0 < n <= len(data) for nonempty data,
+    write(data, timeout=None): requires bytes; returns 0 < n <= len(data) for nonempty data,
     and 0 for empty bytes. The caller handles partial writes. A zero-byte
     send of nonempty data must raise, never loop indefinitely.
     shutdown_write(): half-closes the local write direction while keeping reads.
     close(): idempotently releases the owned handle. Post-close I/O raises.
     """
 
-    def read(self, max_bytes: int) -> bytes: ...
+    @property
+    def local_endpoint(self) -> IPEndpoint: ...
 
-    def write(self, data: bytes) -> int: ...
+    @property
+    def remote_endpoint(self) -> IPEndpoint: ...
+
+    def read(self, max_bytes: int, *, timeout: float | None = None) -> bytes: ...
+
+    def write(self, data: bytes, *, timeout: float | None = None) -> int: ...
 
     def shutdown_write(self) -> None: ...
 

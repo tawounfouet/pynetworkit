@@ -1,6 +1,6 @@
 """PyNetworkKit: network concepts, capability contracts and learning labs.
 
-M0 E0 only establishes a package. Other public APIs are added by later epics.
+The M0 async and M1 sync capability surfaces are intentionally distinct.
 """
 
-__version__ = "0.1.0a1"
+__version__ = "0.1.0a2"

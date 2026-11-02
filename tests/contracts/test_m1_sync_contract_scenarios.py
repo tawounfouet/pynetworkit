@@ -21,7 +21,15 @@ class _ContractByteStream:
         self._closed = False
         self._write_closed = False
 
-    def read(self, max_bytes: int) -> bytes:
+    @property
+    def local_endpoint(self) -> IPEndpoint:
+        return IPEndpoint.parse("127.0.0.1", 1001)
+
+    @property
+    def remote_endpoint(self) -> IPEndpoint:
+        return IPEndpoint.parse("127.0.0.1", 1002)
+
+    def read(self, max_bytes: int, *, timeout: float | None = None) -> bytes:
         if type(max_bytes) is not int or max_bytes <= 0:
             raise ValueError("positive integer required")
         if self._closed:
@@ -29,7 +37,7 @@ class _ContractByteStream:
         chunk, self._pending = self._pending[:max_bytes], self._pending[max_bytes:]
         return chunk
 
-    def write(self, data: bytes) -> int:
+    def write(self, data: bytes, *, timeout: float | None = None) -> int:
         if not isinstance(data, bytes):
             raise TypeError("bytes required")
         if self._closed or self._write_closed:

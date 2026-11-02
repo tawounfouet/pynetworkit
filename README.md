@@ -2,8 +2,9 @@
 
 **Python-first networking primitives, typed capability contracts, and reproducible learning labs.**
 
-> **Pre-alpha M0 development.** Version `0.1.0a1`
-> is planned; no public release, PyPI publication or stable API is claimed.
+> **Pre-alpha M0/M1 development.** Source version `0.1.0a2`
+> is a local development candidate only; no tag, PyPI publication
+> or stable API is claimed.
 
 
 ## Project identity and scope

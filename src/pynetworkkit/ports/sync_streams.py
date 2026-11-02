@@ -46,9 +46,7 @@ class SyncByteStream(Protocol):
 class SyncStreamConnector(Protocol):
     """Create a connected, exclusively owned stream for a numeric IP endpoint."""
 
-    def connect(
-        self, remote: IPEndpoint, *, timeout: float | None = None
-    ) -> SyncByteStream: ...
+    def connect(self, remote: IPEndpoint, *, timeout: float | None = None) -> SyncByteStream: ...
 
 
 class SyncStreamListener(Protocol):
@@ -61,9 +59,7 @@ class SyncStreamListener(Protocol):
     @property
     def local_endpoint(self) -> IPEndpoint: ...
 
-    def accept(
-        self, *, timeout: float | None = None
-    ) -> tuple[SyncByteStream, IPEndpoint]: ...
+    def accept(self, *, timeout: float | None = None) -> tuple[SyncByteStream, IPEndpoint]: ...
 
     def close(self) -> None: ...
 

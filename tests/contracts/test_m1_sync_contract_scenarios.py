@@ -3,6 +3,7 @@
 These doubles exercise the pre-adapter contract tests. They are deliberately
 small and cannot establish runtime correctness of future socket adapters.
 """
+
 from __future__ import annotations
 
 from types import TracebackType

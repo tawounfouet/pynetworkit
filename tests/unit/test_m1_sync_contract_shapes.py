@@ -1,4 +1,5 @@
 """E00 shape and import regression checks; socket adapters are future E01/E02."""
+
 from __future__ import annotations
 
 import inspect
@@ -56,8 +57,8 @@ def test_sync_stream_write_returns_count_not_async_none() -> None:
 
 def test_connector_and_listener_use_typed_endpoints() -> None:
     assert get_type_hints(SyncStreamConnector.connect)["remote"] is IPEndpoint
-    assert get_type_hints(SyncStreamListener.accept)["return"] == (
-        tuple[SyncByteStream, IPEndpoint]
+    assert (
+        get_type_hints(SyncStreamListener.accept)["return"] == (tuple[SyncByteStream, IPEndpoint])
     )
 
 

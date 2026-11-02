@@ -1,4 +1,5 @@
 """Async UDP contract matching M1's ReceivedDatagram semantics."""
+
 from __future__ import annotations
 
 from typing import Protocol

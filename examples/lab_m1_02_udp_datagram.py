@@ -1,4 +1,5 @@
 """M1 lab 02: datagrams and explicit truncation over IPv4 loopback."""
+
 from __future__ import annotations
 
 from pynetworkkit.adapters.socket import SocketUDPChannel

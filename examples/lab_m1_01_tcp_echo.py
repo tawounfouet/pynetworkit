@@ -1,4 +1,5 @@
 """M1 lab 01: bounded TCP echo over local IPv4 loopback."""
+
 from __future__ import annotations
 
 import threading

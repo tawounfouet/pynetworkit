@@ -1,4 +1,5 @@
 """M1 lab 03: deterministic errors, timeouts and closed resource checks."""
+
 from __future__ import annotations
 
 from pynetworkkit.adapters.socket import SocketTCPConnector, SocketTCPListener, SocketUDPChannel

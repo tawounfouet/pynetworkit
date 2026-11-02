@@ -61,7 +61,7 @@ for name in required:
 if rules:
     raise SystemExit("Ruleset exists; refusing to overwrite without reconciliation")
 policy={
-    "required_status_checks":{"strict":True,"contexts":[],
+    "required_status_checks":{"strict":True,
       "checks":[{"context":n,"app_id":15368} for n in required]},
     "enforce_admins":True,
     "required_pull_request_reviews":{
@@ -72,8 +72,10 @@ policy={
     "required_linear_history":True,
     "allow_force_pushes":False,"allow_deletions":False
 }
+if ("contexts" in policy["required_status_checks"]) == ("checks" in policy["required_status_checks"]):
+    raise SystemExit("ERROR: GitHub requires exactly one of contexts or checks")
 with open(sys.argv[3],"w") as f: json.dump(policy,f,indent=2)
-print("Verified 9 GitHub Actions checks from app_id 15368")
+print("Verified 9 GitHub Actions checks from app_id 15368 (checks-only API payload)")
 print("Policy: PR required, review count 0, all 9 checks, strict, admins enforced,")
 print("        conversations resolved, linear history, no force push or deletion.")
 PY

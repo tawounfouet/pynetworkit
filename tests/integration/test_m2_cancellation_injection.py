@@ -22,9 +22,7 @@ async def test_cancel_pending_tcp_connect_propagates(monkeypatch: pytest.MonkeyP
         await asyncio.Event().wait()
 
     monkeypatch.setattr(asyncio, "open_connection", stalled_connect)
-    task = asyncio.create_task(
-        AsyncioTCPConnector().connect(IPEndpoint.parse("127.0.0.1", 10001))
-    )
+    task = asyncio.create_task(AsyncioTCPConnector().connect(IPEndpoint.parse("127.0.0.1", 10001)))
     await asyncio.wait_for(started.wait(), 2)
     task.cancel()
     with pytest.raises(asyncio.CancelledError):

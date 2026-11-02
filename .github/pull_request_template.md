@@ -1,25 +1,30 @@
-## Purpose / issue(s)
+## Purpose and traceability
 
-- Issue IDs: `PNK-M0-...`
-- Epic: `E0 / E1 / E2 / E3 / E4`
+- Issue(s) and Epic:
+- Milestone:
+- Change: code / tests / docs / security / CI
+- Compatibility / ADR:
 
 ## Software Design & Learning
 
-- Network concept:
-- Python mechanism:
-- Design principle/pattern:
-- Trade-off / alternatives:
+- Network concept and Python mechanism:
+- Design principle or pattern (DDD, DIP, ISP, etc.):
+- Alternatives and constraints:
 
 ## Verification
 
-- [ ] `ruff check .`
-- [ ] `ruff format --check .`
-- [ ] `mypy src/pynetworkkit`
-- [ ] `python -m pytest -q`
-- [ ] `python -m build`
-- [ ] CI matrix passing (or documented blocker)
+- [ ] Ruff lint and format
+- [ ] mypy strict
+- [ ] Unit, contract, loopback tests as relevant
+- [ ] Combined branch and statement coverage >=95%
+- [ ] Build and isolated wheel verification
+- [ ] All 9 GitHub CI checks passed
+- [ ] Evidence links and exact SHA recorded
 
-## Security and release
+## Security and publication
 
-- [ ] No secrets or unapproved external network tests
-- [ ] No release or compatibility claim without evidence
+- [ ] No secrets, personal information or unapproved external network I/O
+- [ ] Dependency changes and Actions SHAs reviewed
+- [ ] No public API break without an approved ADR
+- [ ] No tag, GitHub Release, TestPyPI or PyPI publication in this PR
+- [ ] If publication is intended, link its independent GO and hashes.

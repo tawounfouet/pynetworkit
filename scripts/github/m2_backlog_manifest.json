@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "repository": "tawounfouet/pynetworkkit",
+  "owner": "tawounfouet",
+  "project_number": 9,
+  "project_id": "PVT_kwHOBKwz2s4Bpywv",
+  "project_title": "PyNetworkKit - Development Roadmap",
+  "milestone_title": "M2 - Async Core (v0.2.0a1)",
+  "plan_path": "docs/roadmap/29_PYNETWORKKIT_M2_ASYNC_CORE_IMPLEMENTATION_PLAN.md",
+  "epics": [
+    {
+      "id": "PNK-M2-E00",
+      "title": "Async Contracts & M0 Compatibility",
+      "tasks": [
+        "PNK-M2-001",
+        "PNK-M2-002",
+        "PNK-M2-003",
+        "PNK-M2-004",
+        "PNK-M2-005",
+        "PNK-M2-006"
+      ]
+    },
+    {
+      "id": "PNK-M2-E01",
+      "title": "Async TCP Streams, Connector & Listener",
+      "tasks": [
+        "PNK-M2-007",
+        "PNK-M2-008",
+        "PNK-M2-009",
+        "PNK-M2-010",
+        "PNK-M2-011",
+        "PNK-M2-012"
+      ]
+    },
+    {
+      "id": "PNK-M2-E02",
+      "title": "Async UDP Datagrams",
+      "tasks": [
+        "PNK-M2-013",
+        "PNK-M2-014",
+        "PNK-M2-015",
+        "PNK-M2-016",
+        "PNK-M2-017",
+        "PNK-M2-018"
+      ]
+    },
+    {
+      "id": "PNK-M2-E03",
+      "title": "Cancellation, Deadlines & Ownership",
+      "tasks": [
+        "PNK-M2-019",
+        "PNK-M2-020",
+        "PNK-M2-021",
+        "PNK-M2-022",
+        "PNK-M2-023",
+        "PNK-M2-024"
+      ]
+    },
+    {
+      "id": "PNK-M2-E04",
+      "title": "Backpressure & Bounded Concurrency",
+      "tasks": [
+        "PNK-M2-025",
+        "PNK-M2-026",
+        "PNK-M2-027",
+        "PNK-M2-028",
+        "PNK-M2-029",
+        "PNK-M2-030"
+      ]
+    },
+    {
+      "id": "PNK-M2-E05",
+      "title": "Contracts, Labs, CI & Technical Closure",
+      "tasks": [
+        "PNK-M2-031",
+        "PNK-M2-032",
+        "PNK-M2-033",
+        "PNK-M2-034",
+        "PNK-M2-035",
+        "PNK-M2-036"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PNK-M2-001",
+      "title": "Auditer ports M0/M1, tests, exports et compatibilité",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "M1",
+      "acceptance": "Matrice API avant/après, preuve SHA",
+      "issue_number": 79
+    },
+    {
+      "id": "PNK-M2-002",
+      "title": "Décider `AsyncStreamListener` et lifecycle public",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "001",
+      "acceptance": "ADR-M2-01/02",
+      "issue_number": 80
+    },
+    {
+      "id": "PNK-M2-003",
+      "title": "Décider `AsyncDatagramChannel`, `ReceivedDatagram`, erreurs",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "001",
+      "acceptance": "ADR-M2-03 et signatures typées",
+      "issue_number": 81
+    },
+    {
+      "id": "PNK-M2-004",
+      "title": "Spécifier cancellation, ownership et erreurs",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "001",
+      "acceptance": "ADR-M2-04/07, matrice d'états",
+      "issue_number": 82
+    },
+    {
+      "id": "PNK-M2-005",
+      "title": "Spécifier deadlines et backpressure observables",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "004",
+      "acceptance": "ADR-M2-05/06, limites",
+      "issue_number": 83
+    },
+    {
+      "id": "PNK-M2-006",
+      "title": "Écrire tests de forme, compatibilité et contrats avant adapters",
+      "epic": "PNK-M2-E00",
+      "priority": "P0",
+      "dependencies": "002-005",
+      "acceptance": "Tests rouges ciblés puis verts après implémentation",
+      "issue_number": 84
+    },
+    {
+      "id": "PNK-M2-007",
+      "title": "Créer structure adapters/asyncio, imports et typing",
+      "epic": "PNK-M2-E01",
+      "priority": "P0",
+      "dependencies": "E00",
+      "acceptance": "Build/import et mypy strict",
+      "issue_number": 85
+    },
+    {
+      "id": "PNK-M2-008",
+      "title": "Implémenter stream reader/writer `read/write/aclose`",
+      "epic": "PNK-M2-E01",
+      "priority": "P0",
+      "dependencies": "007",
+      "acceptance": "Stream Protocol satisfait, EOF, write/drain",
+      "issue_number": 86
+    },
+    {
+      "id": "PNK-M2-009",
+      "title": "Implémenter connecteur à endpoint IP numérique",
+      "epic": "PNK-M2-E01",
+      "priority": "P0",
+      "dependencies": "008",
+      "acceptance": "TCP loopback et refus, IPv4/IPv6",
+      "issue_number": 87
+    },
+    {
+      "id": "PNK-M2-010",
+      "title": "Implémenter listener `bind/accept/aclose`",
+      "epic": "PNK-M2-E01",
+      "priority": "P0",
+      "dependencies": "008-009",
+      "acceptance": "Accept non bloquant, transfert ownership",
+      "issue_number": 88
+    },
+    {
+      "id": "PNK-M2-011",
+      "title": "Tester half-close, erreur de fermeture, séquentialité",
+      "epic": "PNK-M2-E01",
+      "priority": "P1",
+      "dependencies": "010",
+      "acceptance": "Comportements documentés, pas API M0 rompue",
+      "issue_number": 89
+    },
+    {
+      "id": "PNK-M2-012",
+      "title": "Lab async TCP echo et 10 clients bornés",
+      "epic": "PNK-M2-E01",
+      "priority": "P1",
+      "dependencies": "010-011",
+      "acceptance": "Lab CLI exécuté en CI, pas de tâches fuites",
+      "issue_number": 90
+    },
+    {
+      "id": "PNK-M2-013",
+      "title": "Implémenter bind d'une socket UDP non bloquante",
+      "epic": "PNK-M2-E02",
+      "priority": "P0",
+      "dependencies": "E00",
+      "acceptance": "Port(0), IPv4/IPv6, fermeture erreur",
+      "issue_number": 91
+    },
+    {
+      "id": "PNK-M2-014",
+      "title": "Implémenter `send_to` et limites famille/taille",
+      "epic": "PNK-M2-E02",
+      "priority": "P0",
+      "dependencies": "013",
+      "acceptance": "UDP complet ou erreur, payload vide",
+      "issue_number": 92
+    },
+    {
+      "id": "PNK-M2-015",
+      "title": "Implémenter `recv_from` portable et troncature",
+      "epic": "PNK-M2-E02",
+      "priority": "P0",
+      "dependencies": "013-014",
+      "acceptance": "Buffer 65535, `ReceivedDatagram`",
+      "issue_number": 93
+    },
+    {
+      "id": "PNK-M2-016",
+      "title": "Qualifier Windows, timeout, close et datagrammes 0 octet",
+      "epic": "PNK-M2-E02",
+      "priority": "P0",
+      "dependencies": "015",
+      "acceptance": "Matrice négative, pas d'EOF UDP",
+      "issue_number": 94
+    },
+    {
+      "id": "PNK-M2-017",
+      "title": "Ajouter tests de contrat, doubles et IPv6 gated",
+      "epic": "PNK-M2-E02",
+      "priority": "P1",
+      "dependencies": "015",
+      "acceptance": "Contract suite + loopback",
+      "issue_number": 95
+    },
+    {
+      "id": "PNK-M2-018",
+      "title": "Lab async UDP comparatif avec TCP",
+      "epic": "PNK-M2-E02",
+      "priority": "P1",
+      "dependencies": "016-017",
+      "acceptance": "Exemple exécuté en CI",
+      "issue_number": 96
+    },
+    {
+      "id": "PNK-M2-019",
+      "title": "Fixer modèle de propriétaire des tasks/sockets",
+      "epic": "PNK-M2-E03",
+      "priority": "P0",
+      "dependencies": "E00, E01",
+      "acceptance": "ADR lifecycle appliquée",
+      "issue_number": 97
+    },
+    {
+      "id": "PNK-M2-020",
+      "title": "Rendre connect/accept/read/write/recv cancel-safe",
+      "epic": "PNK-M2-E03",
+      "priority": "P0",
+      "dependencies": "019, E02",
+      "acceptance": "Cancel injecté à chaque await",
+      "issue_number": 98
+    },
+    {
+      "id": "PNK-M2-021",
+      "title": "Implémenter politique deadline monotone commune",
+      "epic": "PNK-M2-E03",
+      "priority": "P0",
+      "dependencies": "019",
+      "acceptance": "Budget global et tests fake clock",
+      "issue_number": 99
+    },
+    {
+      "id": "PNK-M2-022",
+      "title": "Définir fermeture idempotente et shutdown sous double cancel",
+      "epic": "PNK-M2-E03",
+      "priority": "P0",
+      "dependencies": "020",
+      "acceptance": "Aucun handle perdu, pas de hang",
+      "issue_number": 100
+    },
+    {
+      "id": "PNK-M2-023",
+      "title": "Structurer serveur concurrent avec TaskGroup borné",
+      "epic": "PNK-M2-E03",
+      "priority": "P1",
+      "dependencies": "021-022",
+      "acceptance": "Zero task orpheline dans les tests",
+      "issue_number": 101
+    },
+    {
+      "id": "PNK-M2-024",
+      "title": "Lab cancellation, timeout et fault investigation",
+      "epic": "PNK-M2-E03",
+      "priority": "P1",
+      "dependencies": "020-023",
+      "acceptance": "Reproductible sous Python >=3.11",
+      "issue_number": 102
+    },
+    {
+      "id": "PNK-M2-025",
+      "title": "Spécifier limites buffer bytes, items et tasks",
+      "epic": "PNK-M2-E04",
+      "priority": "P0",
+      "dependencies": "E00, E03",
+      "acceptance": "Policy documentée, validation stricte",
+      "issue_number": 103
+    },
+    {
+      "id": "PNK-M2-026",
+      "title": "Intégrer writer.drain avec chunks bornés",
+      "epic": "PNK-M2-E04",
+      "priority": "P0",
+      "dependencies": "E01, 025",
+      "acceptance": "Consommateur lent, pas croissance sans borne",
+      "issue_number": 104
+    },
+    {
+      "id": "PNK-M2-027",
+      "title": "Implémenter queue/pipeline borné au besoin",
+      "epic": "PNK-M2-E04",
+      "priority": "P0",
+      "dependencies": "025",
+      "acceptance": "Pas de queue illimitée, métrique de profondeur",
+      "issue_number": 105
+    },
+    {
+      "id": "PNK-M2-028",
+      "title": "Tester saturation, fermeture pendant attente, cancellation",
+      "epic": "PNK-M2-E04",
+      "priority": "P0",
+      "dependencies": "026-027",
+      "acceptance": "Déblocage garanti, crédits restitués",
+      "issue_number": 106
+    },
+    {
+      "id": "PNK-M2-029",
+      "title": "Tester seuil de connexions et réaction à surcharge",
+      "epic": "PNK-M2-E04",
+      "priority": "P1",
+      "dependencies": "E03, 025",
+      "acceptance": "Reject/await selon ADR, preuve reproductible",
+      "issue_number": 107
+    },
+    {
+      "id": "PNK-M2-030",
+      "title": "Lab slow consumer / backpressure",
+      "epic": "PNK-M2-E04",
+      "priority": "P1",
+      "dependencies": "026-029",
+      "acceptance": "Graphe ou journal pédagogique borné",
+      "issue_number": 108
+    },
+    {
+      "id": "PNK-M2-031",
+      "title": "Qualifier M0 mémoire vs TCP asyncio pour contrat commun",
+      "epic": "PNK-M2-E05",
+      "priority": "P0",
+      "dependencies": "E01/E03",
+      "acceptance": "Suite paramétrée, écarts documentés",
+      "issue_number": 109
+    },
+    {
+      "id": "PNK-M2-032",
+      "title": "Qualifier UDP + faults/races/cancel sous 9 OS/Python",
+      "epic": "PNK-M2-E05",
+      "priority": "P0",
+      "dependencies": "E02/E03/E04",
+      "acceptance": "Matrice CI 9/9, aucun hang",
+      "issue_number": 110
+    },
+    {
+      "id": "PNK-M2-033",
+      "title": "Auditer packaging, mypy, Ruff, coverage et sécurité",
+      "epic": "PNK-M2-E05",
+      "priority": "P0",
+      "dependencies": "031-032",
+      "acceptance": "Quality gates existants inchangés",
+      "issue_number": 111
+    },
+    {
+      "id": "PNK-M2-034",
+      "title": "Rédiger API publique, labs, compatibility et migration",
+      "epic": "PNK-M2-E05",
+      "priority": "P1",
+      "dependencies": "031-033",
+      "acceptance": "Exemples CI et README actualisé",
+      "issue_number": 112
+    },
+    {
+      "id": "PNK-M2-035",
+      "title": "Tracer ADR, SHA, issues, PR, run et risques",
+      "epic": "PNK-M2-E05",
+      "priority": "P0",
+      "dependencies": "031-034",
+      "acceptance": "Evidence ledger, décisions de revue",
+      "issue_number": 113
+    },
+    {
+      "id": "PNK-M2-036",
+      "title": "Réaliser audit final GO/NO-GO et handoff M3",
+      "epic": "PNK-M2-E05",
+      "priority": "P0",
+      "dependencies": "035",
+      "acceptance": "Document final et release gate séparé",
+      "issue_number": 114
+    }
+  ]
+}

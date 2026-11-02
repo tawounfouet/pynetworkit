@@ -49,16 +49,16 @@ def _exchange(family_host: str) -> None:
         with pytest.raises(StreamClosedError):
             client.shutdown_write()
         with pytest.raises(StreamClosedError):
-            client.local_endpoint
+            _ = client.local_endpoint
         with pytest.raises(StreamClosedError):
-            client.remote_endpoint
+            _ = client.remote_endpoint
         with pytest.raises(StreamClosedError):
             client.__enter__()
     listener.close()
     with pytest.raises(StreamClosedError):
         listener.accept(timeout=0.02)
     with pytest.raises(StreamClosedError):
-        listener.local_endpoint
+        _ = listener.local_endpoint
     with pytest.raises(StreamClosedError):
         listener.__enter__()
 

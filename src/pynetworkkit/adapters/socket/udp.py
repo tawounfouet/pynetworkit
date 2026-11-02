@@ -5,9 +5,6 @@ import socket
 from types import TracebackType
 from typing import Self
 
-from pynetworkkit.domain import IPEndpoint
-from pynetworkkit.ports import ReceivedDatagram, StreamClosedError
-
 from pynetworkkit.adapters.socket._common import (
     address_family,
     enable_ipv6_only,
@@ -15,6 +12,8 @@ from pynetworkkit.adapters.socket._common import (
     socket_address,
     temporary_timeout,
 )
+from pynetworkkit.domain import IPEndpoint
+from pynetworkkit.ports import ReceivedDatagram, StreamClosedError
 
 
 class SocketUDPChannel:

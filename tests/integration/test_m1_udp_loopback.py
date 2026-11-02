@@ -53,7 +53,7 @@ def _exercise(host: str) -> None:
     with pytest.raises(StreamClosedError):
         left.send_to(b"", IPEndpoint.parse(host, 5000))
     with pytest.raises(StreamClosedError):
-        left.local_endpoint
+        _ = left.local_endpoint
     with pytest.raises(StreamClosedError):
         left.__enter__()
 

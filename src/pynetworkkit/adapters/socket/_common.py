@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import math
 import socket
+from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Iterator
 
 from pynetworkkit.domain import IPEndpoint, NetworkValidationError, Port, parse_ip_address
 

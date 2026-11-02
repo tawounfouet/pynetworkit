@@ -5,9 +5,6 @@ import socket
 from types import TracebackType
 from typing import Self
 
-from pynetworkkit.domain import IPEndpoint
-from pynetworkkit.ports import StreamClosedError
-
 from pynetworkkit.adapters.socket._common import (
     address_family,
     enable_ipv6_only,
@@ -16,6 +13,8 @@ from pynetworkkit.adapters.socket._common import (
     temporary_timeout,
     validate_timeout,
 )
+from pynetworkkit.domain import IPEndpoint
+from pynetworkkit.ports import StreamClosedError
 
 
 class SocketTCPStream:

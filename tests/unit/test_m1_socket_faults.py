@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import socket
-from collections.abc import Iterator
 
 import pytest
 

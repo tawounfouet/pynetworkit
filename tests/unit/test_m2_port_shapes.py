@@ -22,16 +22,14 @@ def test_m0_async_signatures_remain_intact() -> None:
 def test_m1_sync_surface_remains_separate() -> None:
     assert callable(SyncByteStream.read)
     assert callable(SyncDatagramChannel.recv_from)
-    assert list(signature(ReceivedDatagram).parameters) == [
-        "payload", "source", "truncated"
-    ]
+    assert list(signature(ReceivedDatagram).parameters) == ["payload", "source", "truncated"]
 
 
 def test_m2_ports_have_small_distinct_capabilities() -> None:
     assert list(signature(AsyncStreamListener.accept).parameters) == ["self"]
-    assert list(signature(AsyncDatagramChannel.recv_from).parameters) == [
-        "self", "max_bytes"
-    ]
+    assert list(signature(AsyncDatagramChannel.recv_from).parameters) == ["self", "max_bytes"]
     assert list(signature(AsyncDatagramChannel.send_to).parameters) == [
-        "self", "payload", "destination"
+        "self",
+        "payload",
+        "destination",
     ]

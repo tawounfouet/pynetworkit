@@ -5,5 +5,11 @@ from pynetworkkit.adapters.asyncio.tcp import (
     AsyncioTCPListener,
     AsyncioTCPStream,
 )
+from pynetworkkit.adapters.asyncio.udp import AsyncioUDPChannel
 
-__all__ = ["AsyncioTCPConnector", "AsyncioTCPListener", "AsyncioTCPStream"]
+__all__ = [
+    "AsyncioTCPConnector",
+    "AsyncioTCPListener",
+    "AsyncioTCPStream",
+    "AsyncioUDPChannel",
+]

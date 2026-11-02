@@ -28,9 +28,13 @@ jobs:
           python -c "import pathlib; p=pathlib.Path('src/pynetworkkit/__init__.py').read_text(); assert '__version__ = \"0.1.0a2\"' in p, 'Unexpected source version'"
       - name: Install candidate build and audit tools
         run: |
+          # GitHub's Python image may include vulnerable setuptools 79.0.1.
+          # Upgrade BEFORE installing this project's build and dev tools.
+          python -m pip install --upgrade 'setuptools>=84.1.0'
           python -m pip install -e '.[dev]'
           python -m pip install pip-audit
           python -m pip check
+          python -m pip show setuptools
       - name: Audit installed build and development dependencies
         run: pip-audit --local
       - name: Check source and package quality

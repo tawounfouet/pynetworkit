@@ -17,12 +17,12 @@ CI M1 : https://github.com/tawounfouet/pynetworkkit/actions/runs/41484577935
 
 ## Garde-fous avant publication
 
-- [ ] Protections main et 9 required checks activés et vérifiés.
-- [ ] PR, conversation resolution, restrictions admins et force push vérifiés.
-- [ ] Permissions collaborateur et Actions GITHUB_TOKEN auditées.
+- [x] Protections main et 9 required checks activés et vérifiés (owner CLI apply/verify, puis API GitHub main.protected=true le 2026-11-02).
+- [x] PR, conversation resolution, restrictions admins et force push vérifiés par le script administratif `--verify` le 2026-11-02.
+- [x] Permissions collaborateur et Actions GITHUB_TOKEN auditées : seul collaborateur listé `tawounfouet` admin/write, permissions par défaut `read`, revue PR par workflow désactivée.
 - [ ] Disponibilité et configuration des alertes de dépendances/secrets.
-- [ ] Exécuter le workflow manuel Release candidate audit sur main.
-- [ ] Examiner toutes les vulnérabilités éventuelles de pip-audit.
+- [ ] Relancer et réussir le workflow manuel Release candidate audit sur main. Premier run #41492439988 FAILED à `pip-audit --local` (setuptools 79.0.1).
+- [ ] Vérifier que les 3 alertes `setuptools 79.0.1` sont éliminées avec `setuptools>=84.1.0` et qu'aucune autre vulnérabilité n'est détectée.
 - [ ] Enregistrer le SHA du job, les noms et SHA256 de wheel + sdist.
 - [ ] Vérifier package name sur PyPI et droits du propriétaire.
 - [ ] Décider explicitement du devenir du candidat a1 dans l'issue #29.
@@ -50,3 +50,15 @@ Ce workflow n'est volontairement pas créé par V9.
 Conserver NO-GO, ouvrir un ticket de correction et produire une nouvelle PR.
 Ne jamais forcer un tag ni remplacer un artefact PyPI déjà publié.
 L'absence de publication ne nécessite aucun rollback.
+
+## Incident de qualification du 2026-11-02
+
+- Run : https://github.com/tawounfouet/pynetworkkit/actions/runs/41492439988
+- Head SHA : `6af9f4dacfebf959a042311a910f53eefeaf144d`
+- Statut : FAILURE au contrôle `pip-audit --local` (pas de package candidat publié).
+- Paquet en cause : `setuptools 79.0.1`, 3 signalements (PYSEC-2026-3447 deux fois, GHSA-xmj3-9gf7-h52w).
+- Plancher des correctifs : `83.0.0` pour les signalements PYSEC, `84.1.0` pour GHSA. Retenir le minimum `84.1.0`.
+- La mention du projet editable `pynetworkkit 0.1.0a2` non trouvé sur PyPI est attendue avant publication et ne constitue pas la cause du code de sortie 1.
+- Remédiation : mise à jour setuptools AVANT `pip install -e`, plancher `[build-system]`, maintien de `pip-audit --local` bloquant.
+- Aucune étape build/wheel/hash de ce run n'a été exécutée : aucun hash ni artefact candidat validé à en déduire.
+- Le NO-GO de publication demeure jusqu'à un nouveau run vert et validation du reste de la checklist.

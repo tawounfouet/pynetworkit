@@ -40,12 +40,16 @@ the claim that a PyPI release was authorized or published.
 - `tests/unit/test_m2_bounded_queue.py` and bounded_map tests prove
   finite capacity, cancellation cleanup and constrained worker count.
 
-## Pending qualification
+## Final M2 qualification evidence (code SHA d29d686a5fb01c8d5161e1a5fe6051967dfa0d12)
 
-- M2 security candidate audit result, exact main SHA, wheel/sdist hashes
-  and any errors found in pip-audit.
-- Final 9/9 CI on the closure main SHA.
-- Verified issue closure and GitHub Project view/field reconciliation.
-- M2 technical closure and independent publication gate.
+- Hardening and 0.2.0a1 candidate: [PR #122](https://github.com/tawounfouet/pynetworkkit/pull/122).
+- ADR acceptance and audit workflow: [PR #123](https://github.com/tawounfouet/pynetworkkit/pull/123).
+- Final code SHA: `d29d686a5fb01c8d5161e1a5fe6051967dfa0d12`.
+- CI: [run 41525452114](https://github.com/tawounfouet/pynetworkkit/actions/runs/41525452114), 9/9 OS/Python jobs successful, 240 passed, 97.54% branch coverage (95% required).
+- Security candidate: [run 41525452563](https://github.com/tawounfouet/pynetworkkit/actions/runs/41525452563), pip-audit reports no known vulnerabilities, wheel/sdist verified and SHA256 checks both OK.
+- Candidate artifacts: [artifact 13178973173](https://github.com/tawounfouet/pynetworkkit/actions/runs/41525452563/artifacts/13178973173).
+- The final audit and M3 handoff are in [M2_FINAL_TECHNICAL_CLOSURE_2026-11-02.md](M2_FINAL_TECHNICAL_CLOSURE_2026-11-02.md).
+- GitHub issue and Project status reconciliation is documented in the final audit; not all Project v2 fields can be queried through the available connector.
+- Technical closure never implies authorization to tag, create a GitHub Release, or publish to TestPyPI/PyPI.
 
 No artifacts were published by this ledger.

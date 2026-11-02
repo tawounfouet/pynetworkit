@@ -35,7 +35,7 @@ lab_m1_03: timeout, TCP EOF and closed UDP channel OK
 ### Lab M1-02 - UDP
 
 - **Concept:** Each UDP receive consumes one datagram. Empty `b""` is data.
-- **Primitive:** `recvfrom(max_bytes + 1)` permits observable truncation.
+- **Primitive:** `recvfrom(65535) followed by a bounded payload slice` permits observable truncation.
 - **Pattern:** `ReceivedDatagram(payload, source, truncated)` Value Object.
 - **Exercise:** Change receive limit to 0, 3 and 9; record the flag. Why
   does a subsequent receive not return the dropped bytes?

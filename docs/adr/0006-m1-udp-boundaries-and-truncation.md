@@ -24,14 +24,18 @@ Validation:
 - max_bytes must be an integer (excluding bool) in 0..65535.
 - payload is at most max_bytes bytes; source is a resolved IPEndpoint.
 - implementations must never silently discard truncation evidence.
-- A portable candidate is a recvfrom(max_bytes + 1) probe with bounded
-  allocation (maximum 65536 bytes), then slicing to max_bytes.
+- Read one full UDP packet with recvfrom(65535), a bounded allocation,
+  before slicing the returned bytes to the requested max_bytes.
   truncated = (len(received) > max_bytes). The datagram is fully consumed;
-  any excess is lost, with no automatic replay.
+  any excess from the caller's perspective is lost, with no automatic replay.
 - recvmsg(MSG_TRUNC) may be useful on supported OSes but MUST NOT be
   the sole implementation because its availability varies across systems.
-- The max_bytes + 1 strategy distinguishes payloads over the requested
-  limit without claiming the original full size. Test with IPv4/IPv6
+- Using only max_bytes + 1 as the receive buffer is NOT portable: on
+  Windows Winsock, a too-small recvfrom buffer can raise WSAEMSGSIZE for
+  UDP, losing the excess data and potentially the typed result.
+  Reference: https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-recvfrom
+- Full-datagram receive distinguishes payloads over the requested
+  limit without an unbounded allocation. Test with IPv4/IPv6
   loopback and system-specific socket behavior before E02 completion.
 - An oversized datagram is not a reconnectable stream tail. Never
   reinterpret empty UDP payload as TCP EOF.

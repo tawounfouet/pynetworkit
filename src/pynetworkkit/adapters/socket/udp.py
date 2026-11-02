@@ -64,10 +64,11 @@ class SocketUDPChannel:
         if type(max_bytes) is not int or not 0 <= max_bytes <= 65535:
             raise ValueError("max_bytes must be an integer in 0..65535")
         self._check_open()
-        # One byte beyond the caller's bound detects silent UDP truncation on
-        # POSIX and Windows without depending on recvmsg/MSG_TRUNC.
+        # Consume one full UDP payload in a bounded 65535-byte buffer.
+        # Windows recvfrom() can raise WSAEMSGSIZE on a smaller buffer;
+        # reading the maximum avoids silent/platform-specific truncation.
         with temporary_timeout(self._socket, timeout):
-            raw, addr = self._socket.recvfrom(max_bytes + 1)
+            raw, addr = self._socket.recvfrom(65535)
         return ReceivedDatagram(
             payload=raw[:max_bytes],
             source=endpoint_from_sockaddr(addr),

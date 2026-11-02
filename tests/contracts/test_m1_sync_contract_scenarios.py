@@ -102,7 +102,7 @@ def test_sync_stream_context_manager_closes_on_error() -> None:
 
 
 def test_truncated_udp_datagram_is_already_consumed() -> None:
-    # A fake receive buffer models the intended one-shot max_bytes + 1 probe.
+    # A fake receive buffer models a full-datagram bounded receive.
     payloads = [b"abcdefgh", b""]
     source = IPEndpoint.parse("127.0.0.1", 9000)
 
@@ -110,8 +110,7 @@ def test_truncated_udp_datagram_is_already_consumed() -> None:
         if not (type(max_bytes) is int and 0 <= max_bytes <= 65535):
             raise ValueError("invalid receive limit")
         raw = payloads.pop(0)
-        probe = raw[: max_bytes + 1]
-        return ReceivedDatagram(probe[:max_bytes], source, len(probe) > max_bytes)
+        return ReceivedDatagram(raw[:max_bytes], source, len(raw) > max_bytes)
 
     first = receive(3)
     assert first.payload == b"abc" and first.truncated

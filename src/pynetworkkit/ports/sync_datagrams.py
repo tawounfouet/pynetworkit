@@ -41,8 +41,8 @@ class SyncDatagramChannel(Protocol):
     send_to sends one complete datagram (including empty data), or raises;
     it never performs TCP-like partial-write retries or fragmentation.
     recv_from(max_bytes) permits max_bytes >= 0 and <= 65535 and returns an
-    observable ReceivedDatagram. An implementation can read max_bytes + 1
-    bytes to detect overflow cross-platform, then expose only max_bytes.
+    observable ReceivedDatagram. An implementation can receive a complete datagram with a bounded
+    65535-byte buffer, then expose only max_bytes. This is portable to Windows.
     UDP packets are consumed once even if truncated; there is no EOF marker.
     """
 

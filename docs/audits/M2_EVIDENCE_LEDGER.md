@@ -15,7 +15,6 @@ the claim that a PyPI release was authorized or published.
 | [#119](https://github.com/tawounfouet/pynetworkkit/pull/119) | `15318959c8d4ea14c5cc7761067487e5bb48f3d7` | `0337ea7cb526ac64776846ca96d2aafc5b39036f` | [41522208657](https://github.com/tawounfouet/pynetworkkit/actions/runs/41522208657) (9/9 quality) | E03 - cancellation and monotonic deadline |
 | [#120](https://github.com/tawounfouet/pynetworkkit/pull/120) | `e95dadcf7d37ab9b581d1eb530fef1d9e6589eb8` | `e2e200bb9420e5cf8dede6581f523e717fd10764` | [41523041908](https://github.com/tawounfouet/pynetworkkit/actions/runs/41523041908) (9/9 quality) | E04 - backpressure and task caps |
 | [#121](https://github.com/tawounfouet/pynetworkkit/pull/121) | `35d96115f9be2babec2e2e240f6724f72dd7dce6` | `188ebe86375fcce31d21bb7c32a0de32a3754db8` | [41523551973](https://github.com/tawounfouet/pynetworkkit/actions/runs/41523551973) (9/9 quality) | E05 - contracts, six labs and IPv6 |
-
 | [#122](https://github.com/tawounfouet/pynetworkkit/pull/122) | `2825976979469800d4efc01cf20d5a38a4ae1a91` | `54b9a18a27af4b22b66d2ab25c600f77c8a9b3c6` | [41524396285](https://github.com/tawounfouet/pynetworkkit/actions/runs/41524396285) (9/9 quality) | Cancellation injection, M2 source `0.2.0a1` |
 | [#123](https://github.com/tawounfouet/pynetworkkit/pull/123) | `6e02890983635ff9842ca8a4dd7c678b78d44720` | `d29d686a5fb01c8d5161e1a5fe6051967dfa0d12` | [41525150933](https://github.com/tawounfouet/pynetworkkit/actions/runs/41525150933) (9/9 quality) | ADRs accepted, evidence ledger, audit candidate workflow |
 
@@ -27,8 +26,9 @@ the claim that a PyPI release was authorized or published.
   with 190 tests, 98.90% coverage, and an unpublished wheel/sdist.
 - A new M2 `0.2.0a1` *source development candidate* does not replace,
   retag or publish the earlier M1 SHA or artifacts.
-- The M2 release candidate and artifact checksums must be audited on
-  the final main commit before a technical closure verdict.
+- The M2 source candidate was audited on main SHA
+  `d29d686a5fb01c8d5161e1a5fe6051967dfa0d12`; the exact final
+  closure SHA will be verified separately after the report PR merges.
 
 ## Contract and transport evidence
 

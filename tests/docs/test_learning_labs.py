@@ -15,6 +15,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
         ("lab01_ip_port.py", "lab01: IPv4 CIDR, Port, IPv6 endpoint OK"),
         ("lab02_connection_fsm.py", "lab02: lifecycle and rejected transition OK"),
         ("lab03_memory_duplex.py", "lab03: bidirectional bytes, partial reads and EOF OK"),
+        ("lab_m1_01_tcp_echo.py", "lab_m1_01: TCP echo, partial I/O, EOF and teardown OK"),
+        ("lab_m1_02_udp_datagram.py", "lab_m1_02: UDP source, empty payload and truncation OK"),
+        (
+            "lab_m1_03_fault_investigations.py",
+            "lab_m1_03: timeout, TCP EOF and closed UDP channel OK",
+        ),
     ],
 )
 def test_offline_learning_lab(filename: str, expected: str) -> None:

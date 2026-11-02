@@ -2,8 +2,9 @@
 
 **Python-first networking primitives, typed capability contracts, and reproducible learning labs.**
 
-> **Pre-alpha M0 development.** Version `0.1.0a1`
-> is planned; no public release, PyPI publication or stable API is claimed.
+> **Pre-alpha M0/M1 development.** Source version `0.1.0a2`
+> is a local development candidate only; no tag, PyPI publication
+> or stable API is claimed.
 
 
 ## Project identity and scope
@@ -94,3 +95,16 @@ Design is informed by DDD, SOLID/DIP/ISP, Ports & Adapters, KISS and YAGNI.
 Preserve the copyright and MIT permission notice in copies and substantial
 portions of the software. Publication of `0.1.0a1` still requires code reviews,
 protected branch checks, ADR approvals and explicit release authorization.
+
+## M1 Socket Kernel - development branch
+
+The M1 implementation adds synchronous TCP and UDP adapter capabilities.
+See [M1 quickstart](docs/quickstart_m1.md), the
+[M1 labs](docs/labs/M1_SOCKET_KERNEL.md), and
+[ADR-M1-01](docs/adr/0005-m1-sync-ports-and-partial-io.md).
+Blocking socket operations remain separate from M0 async memory ports.
+
+This section describes development work only; the M0 alpha release
+governance issue [#29](https://github.com/tawounfouet/pynetworkkit/issues/29)
+remains an independent publication gate. No tag or PyPI release is
+implied by the presence of M1 code.

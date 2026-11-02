@@ -1,9 +1,9 @@
 # ADR-M1-01 - Synchronous capability ports and partial TCP I/O
 
-- Status: PROPOSED - maintainer acceptance required before E01/E02 implementations
+- Status: ACCEPTED for the M1 technical baseline (2026-11-02; delegated owner review)
 - Date: 2026-11-02
 - Issues: #37, #38; prerequisite audit #36
-- Scope: M1/E00, no OS socket adapters
+- Scope: M1/E00 contracts, subsequently qualified against E01/E02 OS adapters
 
 ## Context and decision
 
@@ -15,11 +15,11 @@ Introduce four separate protocols via pynetworkkit.ports:
 SyncByteStream, SyncStreamConnector, SyncStreamListener, SyncDatagramChannel.
 Reuse IPEndpoint and Port; preserve M0 async exports and semantics.
 
-SyncByteStream.read(max_bytes: int) -> bytes:
+SyncByteStream.read(max_bytes: int, *, timeout: float | None = None) -> bytes:
 - Requires an integer > 0 (reject bool), yields 1..max_bytes bytes on data;
   b"" exclusively represents peer EOF. It is not a complete application
   message. A reset/timeout raises and is never encoded as b"".
-- write(data: bytes) -> int: a single send-like operation. Empty data returns
+- write(data: bytes, *, timeout: float | None = None) -> int: a single send-like operation. Empty data returns
   zero. For nonempty data, success must report 1..len(data) accepted bytes.
   A kernel return of zero for nonempty data becomes a transport failure,
   not a busy retry loop. Callers must handle partial writes.
@@ -50,10 +50,13 @@ execution models. Structural typing enforces capability composition (DIP/ISP).
 
 ## Verification and sign-off
 
-The E00 PR supplies shape/import/type tests and pre-adapter behavior
-examples. Real network, EOF, shutdown, zero send and timeout behavior
-must be qualified again against E01 socket adapters. CI green is NOT
-an acceptance of this proposed ADR.
+The E00 contract tests and E01 socket behavior tests have been qualified
+on the exact merged main commit with CI across Linux, macOS and Windows.
+This ADR is accepted by delegated owner decision, separately from test success.
+Evidence: https://github.com/tawounfouet/pynetworkkit/actions/runs/41459531092.
+Accepted limitations: blocking sync ports are not interchangeable with M0
+async ports; operation timeouts are not end-to-end deadlines; no write_all
+helper is promised in the minimal public port.
 
 Alternatives rejected: sendall() as write() (hides partial I/O), a single
 universal TCP/UDP interface, implicit socket lifecycle in the domain.

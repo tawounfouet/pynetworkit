@@ -19,7 +19,7 @@ def test_manifest_has_all_42_unique_keys_and_six_groups() -> None:
     assert manifest["project_number"] == 9
     assert manifest["project_id"] == "PVT_kwHOBKwz2s4Bpywv"
     assert manifest["milestone_title"] == "M2 - Async Core (v0.2.0a1)"
-    assert manifest["plan_path"] == str(PLAN.relative_to(ROOT))
+    assert manifest["plan_path"] == PLAN.relative_to(ROOT).as_posix()
     epics, tasks = manifest["epics"], manifest["tasks"]
     assert len(epics) == 6 and len(tasks) == 36
     keys = [e["id"] for e in epics] + [t["id"] for t in tasks]

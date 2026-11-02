@@ -1,4 +1,5 @@
 """Small OS-socket boundary helpers; never imported by the pure domain or ports."""
+
 from __future__ import annotations
 
 import math

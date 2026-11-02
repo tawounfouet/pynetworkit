@@ -1,4 +1,5 @@
 """Bounded TCP loopback qualification without external network or permanent servers."""
+
 from __future__ import annotations
 
 import socket

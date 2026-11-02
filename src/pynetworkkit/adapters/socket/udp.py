@@ -1,4 +1,5 @@
 """Blocking UDP datagram channel; source and truncation are always observable."""
+
 from __future__ import annotations
 
 import socket
@@ -59,9 +60,7 @@ class SocketUDPChannel:
             raise OSError("UDP send did not accept the entire datagram")
         return sent
 
-    def recv_from(
-        self, max_bytes: int, *, timeout: float | None = None
-    ) -> ReceivedDatagram:
+    def recv_from(self, max_bytes: int, *, timeout: float | None = None) -> ReceivedDatagram:
         if type(max_bytes) is not int or not 0 <= max_bytes <= 65535:
             raise ValueError("max_bytes must be an integer in 0..65535")
         self._check_open()

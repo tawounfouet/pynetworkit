@@ -1,4 +1,5 @@
 """Blocking TCP socket adapters with explicit exclusive resource ownership."""
+
 from __future__ import annotations
 
 import socket
@@ -89,9 +90,7 @@ class SocketTCPStream:
 class SocketTCPConnector:
     """Factory of exclusively owned connected TCP streams."""
 
-    def connect(
-        self, remote: IPEndpoint, *, timeout: float | None = None
-    ) -> SocketTCPStream:
+    def connect(self, remote: IPEndpoint, *, timeout: float | None = None) -> SocketTCPStream:
         family = address_family(remote)
         if remote.port.value == 0:
             raise ValueError("TCP destination port must not be zero")
@@ -138,9 +137,7 @@ class SocketTCPListener:
         self._check_open()
         return endpoint_from_sockaddr(self._socket.getsockname())
 
-    def accept(
-        self, *, timeout: float | None = None
-    ) -> tuple[SocketTCPStream, IPEndpoint]:
+    def accept(self, *, timeout: float | None = None) -> tuple[SocketTCPStream, IPEndpoint]:
         self._check_open()
         with temporary_timeout(self._socket, timeout):
             accepted, raw_address = self._socket.accept()

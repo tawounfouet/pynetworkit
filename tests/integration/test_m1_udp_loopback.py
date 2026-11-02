@@ -1,4 +1,5 @@
 """Real IPv4/IPv6 UDP loopback, bounded receives and observable truncation."""
+
 from __future__ import annotations
 
 import socket

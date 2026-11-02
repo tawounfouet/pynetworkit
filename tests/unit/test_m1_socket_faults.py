@@ -1,4 +1,5 @@
 """Fault injection for socket construction, timeout restoration, partial I/O."""
+
 from __future__ import annotations
 
 import socket

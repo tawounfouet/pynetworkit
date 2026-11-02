@@ -4,6 +4,18 @@ All notable changes will be recorded in this file. Versions follow PEP 440.
 
 ## Unreleased
 
+### M2 Async Core - source candidate `0.2.0a1` (unpublished)
+
+- Native `asyncio` TCP stream, connector and pull-based listener; nonblocking
+  accept, explicit stream ownership, bounded write chunks and `drain`.
+- Native `asyncio` UDP channel with sender metadata, empty datagrams,
+  portable truncation indication and IPv4/IPv6 capability-gated tests.
+- Monotonic absolute deadlines, cooperative cancellation semantics,
+  byte/item-bounded queues and task-bounded structured concurrency.
+- Shared M0/M2 contract tests and six offline M2 learning labs.
+- No HTTP, TLS, DNS implementation or publishing authorization in M2.
+
+
 ### Added
 
 - M1 sync Protocol ports for TCP stream/connector/listener and UDP datagram.
@@ -23,5 +35,6 @@ All notable changes will be recorded in this file. Versions follow PEP 440.
 - MIT licensing with SPDX PEP 639 metadata and bundled license notice.
 
 > `0.1.0a1` was a technical M0 candidate and remains unpublished.
-> The `0.1.0a2` source version identifies M1 development, not a
-> tagged or published release.
+> The `0.1.0a2` M1 source candidate remains historically qualified at its
+> original commit and artifacts; M2 source `0.2.0a1` does not retroactively
+> publish or replace those artifacts.

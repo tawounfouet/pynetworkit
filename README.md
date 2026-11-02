@@ -2,9 +2,9 @@
 
 **Python-first networking primitives, typed capability contracts, and reproducible learning labs.**
 
-> **Pre-alpha M0/M1 development.** Source version `0.1.0a2`
-> is a local development candidate only; no tag, PyPI publication
-> or stable API is claimed.
+> **Pre-alpha M2 Async Core candidate.** Source version `0.2.0a1`
+> identifies development code only. No Git tag, PyPI publication,
+> or stable API is claimed. The historical M1 candidate remains verifiable.
 
 
 ## Project identity and scope

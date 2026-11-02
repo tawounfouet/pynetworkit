@@ -46,3 +46,11 @@ Linux, macOS and Windows. All labs use loopback and ephemeral ports.
 DNS resolution, framing, TLS and publication are outside this milestone.
 Use external `asyncio.timeout` or `within_deadline` to bound operations.
 Policies deliberately do not expose a new event loop or thread-based facade.
+
+## Deliberately deferred behavior
+
+M2 does not add a public TCP half-close method. Closing a stream is a full
+local close, preserving the M0 `aclose` contract. Client application framing,
+TLS and protocol helpers belong to later milestones. A cancelled write may
+have queued a prefix and is never safely replayable without an application
+protocol. The version `0.2.0a1` is a development candidate, not a release.

@@ -58,6 +58,24 @@ The [API reference](docs/api/M0_PUBLIC_API.md) documents exceptions and
 limitations. The memory adapter is for deterministic in-process testing, **not**
 a TCP stack. Cancellation can leave a partial accepted byte prefix.
 
+## M2 - Native Async Core (development)
+
+The Async Core adds nonblocking TCP streams, connector/listener, UDP datagrams,
+monotonic deadlines, cancellation semantics, bounded queues and structured
+concurrency. The M0/M1 API remains intact. No published M2 release is implied.
+
+See [M2 Async Public API](docs/api/M2_ASYNC_PUBLIC_API.md) and
+[six offline learning labs](docs/labs/M2_ASYNC_CORE.md).
+
+\`\`\`bash
+python examples/lab_m2_01_tcp_echo.py
+python examples/lab_m2_02_udp_datagram.py
+python examples/lab_m2_03_cancel_deadline.py
+python examples/lab_m2_04_backpressure.py
+python examples/lab_m2_05_concurrent_clients.py
+python examples/lab_m2_06_failures.py
+\`\`\`
+
 ## Quality and build
 
 ```bash

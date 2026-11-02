@@ -1,4 +1,5 @@
 """E00: keep M0/M1 stable while introducing narrow M2 contracts."""
+
 from inspect import signature
 
 from pynetworkkit.ports import (

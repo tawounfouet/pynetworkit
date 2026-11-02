@@ -1,6 +1,6 @@
 # ADR-M1-02 - UDP receive result and observable truncation
 
-- Status: PROPOSED - maintainer acceptance required before E02
+- Status: ACCEPTED for the M1 technical baseline (2026-11-02; delegated owner review)
 - Date: 2026-11-02
 - Issues: #37, #39
 
@@ -50,6 +50,9 @@ observability and simple downstream handling.
 
 ## Verification
 
-E00 tests validate the result object and illustrate the one-shot probe
-with doubles. E02 must prove actual loopback datagram semantics and
-negative cases on Linux, macOS and Windows. CI does not yet prove E02.
+The typed result and real UDP loopback behavior are qualified on Linux,
+macOS and Windows, including empty and truncated datagrams and the Winsock
+small-buffer regression. Evidence:
+https://github.com/tawounfouet/pynetworkkit/actions/runs/41459531092.
+Accepted limitation: the 65535-byte bounded receive is a portability choice,
+not a promise that every IP family can transport a 65535-byte UDP payload.

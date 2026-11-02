@@ -1,6 +1,6 @@
 # ADR-M1-03/04 - Exclusive socket ownership, timeouts and errors
 
-- Status: PROPOSED - maintainer acceptance required before E01/E02
+- Status: ACCEPTED AS AMENDED for the M1 technical baseline (2026-11-02; delegated owner review)
 - Date: 2026-11-02
 - Issues: #37, #38, #39, #40
 
@@ -26,9 +26,9 @@ M0 asynchronous aclose full close.
 A timeout argument is an operation-local bound in seconds, float | None.
 None means the socket's normal blocking mode (potentially indefinite);
 negative, NaN and infinite values are invalid and must be rejected
-before a syscall. Zero may mean immediate nonblocking intent only when
-the adapter documents its portability; until E01/E02 decide, use
-positive finite timeout or None in callers.
+before a syscall. Zero requests immediate nonblocking OS behavior; because error outcomes
+vary across systems, production callers should prefer finite positive
+timeouts or None when blocking is intentional.
 
 A single-operation timeout is NOT an end-to-end transfer deadline.
 A future write_all helper must compute a monotonic global deadline
@@ -39,8 +39,9 @@ No I/O or DNS resolution occurs in domain/ports modules.
 
 - M0 NetworkValidationError and the domain FSM remain unchanged.
 - Locally closed stream operations raise existing StreamClosedError.
-- Locally closed listener/channel operations use a distinct,
-  explicitly documented close error (not UDP EOF).
+- Locally closed listener/channel operations also use the existing
+  StreamClosedError, rather than introducing a distinct exception type.
+  The condition is different from both TCP EOF and a valid empty UDP datagram.
 - Genuine OS socket errors remain OSError (or a reviewed subclass).
   Do not erase errno. Any translation MUST chain with 'raise ... from exc'.
 - socket.timeout / TimeoutError is a timeout outcome, not TCP EOF.
@@ -55,3 +56,13 @@ Fault injection: connect refused, bind in use, accept timeout, recv
 reset, send zero, send partial, UDP oversized, double close, full close,
 write-side shutdown, and already-closed handle. Use bounded loopback
 tests and strict cleanup; assert OSError cause when translated.
+
+## Acceptance clarification
+
+The initial draft suggested a distinct listener/channel closed-error type.
+The shipped M1 adapters consistently use StreamClosedError across stream,
+listener and datagram channel. This amendment accepts that shared exception
+as a deliberate simpler API, not a claim that a new type was implemented.
+Timeout mutation is per operation on an exclusively owned socket, with no
+thread-safe concurrent operations guarantee. Test coverage does not imply
+production-grade arbitrary-thread lifecycle behavior.
